@@ -14,20 +14,39 @@ x-kusk:
       name: hello-world-svc
       namespace: default
       port: 8080
+  openapi-path: openapi.yaml
+  rate_limit:
+    requests_per_unit: 2
+    unit: minute
+  cache:
+    enabled: true
+    max_age: 60
+  auth:
+    scheme: basic
+    auth-upstream:
+      host:
+        hostname: basic-auth-svc.default
+        port: 8080
 paths:
   /hello:
+    x-kusk:
+      mocking:
+        enabled: true
+      validation:
+        request:
+          enabled: true
     get:
       responses:
-        '200':
+        "200":
           description: A simple hello world!
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  message: 
+                  message:
                     type: string
-              example: 
+              example:
                 message: Hello from a mocked response!
   /validated:
     x-kusk:
@@ -37,17 +56,18 @@ paths:
     post:
       requestBody:
         description: ""
+        required: true
         content:
           application/json:
-            schema: 
+            schema:
+              required:
+                - name
               type: object
               properties:
                 name:
                   type: string
-              required:
-                - name
       responses:
-        '200':
+        "200":
           description: ""
           content:
             text/plain:
