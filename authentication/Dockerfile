@@ -1,7 +1,7 @@
-FROM node:16-alpine
-WORKDIR /app
-COPY . .
-RUN npm ci
+FROM denoland/deno:latest
 EXPOSE 8080
-ENV PORT 8080
-CMD node index.js
+WORKDIR /app
+USER deno
+COPY index.ts .
+RUN deno cache index.ts
+CMD ["run", "--allow-net", "--allow-env", "index.ts"]
