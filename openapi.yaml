@@ -9,32 +9,28 @@ x-kusk:
     methods:
       - GET
       - POST
-  upstream:
-    service:
-      name: hello-world-svc
-      namespace: default
-      port: 8080
-  openapi-path: openapi.yaml
-  rate_limit:
-    requests_per_unit: 2
-    unit: minute
-  cache:
+  mocking: 
     enabled: true
-    max_age: 60
-  auth:
-    scheme: basic
-    auth-upstream:
-      host:
-        hostname: basic-auth-svc.default
-        port: 8080
+  # upstream:
+  #   service:
+  #     name: hello-world-svc
+  #     namespace: default
+  #     port: 8080
+  # openapi-path: openapi.yaml
+  # rate_limit:
+  #   requests_per_unit: 2
+  #   unit: minute
+  # cache:
+  #   enabled: true
+  #   max_age: 60
+  # auth:
+  #   scheme: basic
+  #   auth-upstream:
+  #     host:
+  #       hostname: basic-auth-svc.default
+  #       port: 8080
 paths:
   /hello:
-    x-kusk:
-      mocking:
-        enabled: true
-      validation:
-        request:
-          enabled: true
     get:
       responses:
         "200":
@@ -49,10 +45,10 @@ paths:
               example:
                 message: Hello from a mocked response!
   /validated:
-    x-kusk:
-      validation:
-        request:
-          enabled: true
+    # x-kusk:
+    #   validation: 
+    #     request:
+    #       enabled: true
     post:
       requestBody:
         description: ""
