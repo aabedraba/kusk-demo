@@ -4,6 +4,11 @@ const app = new Application();
 
 const router = new Router();
 
+app.use((ctx, next) => {
+  console.log(ctx.request);
+  next();
+});
+
 router.get("/hello", (ctx) => {
   return (ctx.response.body = "Hello from an implemented service!");
 });
