@@ -4,19 +4,21 @@ const app = new Application();
 
 const router = new Router();
 
-app.use((ctx, next) => {
+// log requests
+app.use(async (ctx, next) => {
   console.log(ctx.request);
-  next();
+  await next();
 });
 
-router.get("/hello", (ctx) => {
-  return (ctx.response.body = "Hello from an implemented service!");
-});
-
-router.post("/validated", async (ctx) => {
-  const requestBody = await ctx.request.body().value;
-  return (ctx.response.body = `Hello ${requestBody.name}!`);
-});
+router
+  .get("/hello", (ctx) => {
+    ctx.response.body = "Hello from an implemented service!";
+  })
+  .post("/validated", async (ctx) => {
+    const requestBody = await ctx.request.body().value;
+    ctx.response.body = `Hello ${requestBody.name}!`;
+  });
 
 app.use(router.routes());
+
 await app.listen({ port: 8080 });

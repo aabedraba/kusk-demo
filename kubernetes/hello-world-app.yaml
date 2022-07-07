@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: aabedraba/kusk-hello-world:v1.0.1
+        image: aabedraba/kusk-hello-world:v1.0.2
         ports:
         - containerPort: 8080
 ---
