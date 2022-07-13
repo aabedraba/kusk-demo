@@ -12,11 +12,13 @@ app.use(async (ctx, next) => {
 
 router
   .get("/hello", (ctx) => {
-    ctx.response.body = "Hello from an implemented service!";
+    ctx.response.body = {
+      message: "Hello from an implemented service!",
+    };
   })
   .post("/validated", async (ctx) => {
     const requestBody = await ctx.request.body().value;
-    ctx.response.body = `Hello ${requestBody.name}!`;
+    ctx.response.body = { message: `Hello ${requestBody.name}!` };
   });
 
 app.use(router.routes());
