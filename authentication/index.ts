@@ -1,5 +1,5 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import { decode } from "https://deno.land/std/encoding/base64.ts";
+import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
+import { decode } from "https://deno.land/std@0.147.0/encoding/base64.ts";
 
 const app = new Application();
 
