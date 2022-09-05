@@ -1,7 +1,13 @@
 openapi: 3.0.0
+servers: 
+  - url: http://localhost:8080 
 info:
   title: simple-api
   version: 0.1.0
+  description: A simple API example to test Kusk Gateway with
+  license: 
+    name: MIT
+    url: https://github.com/kubeshop/kusk-gateway/blob/main/LICENSE
 x-kusk:
   cors:
     origins:
@@ -9,29 +15,15 @@ x-kusk:
     methods:
       - GET
       - POST
-  mocking: 
-    enabled: true
-  # upstream:
-  #   service:
-  #     name: hello-world-svc
-  #     namespace: default
-  #     port: 8080
-  # openapi-path: openapi.yaml
-  # rate_limit:
-  #   requests_per_unit: 2
-  #   unit: minute
-  # cache:
-  #   enabled: true
-  #   max_age: 60
-  # auth:
-  #   scheme: basic
-  #   auth-upstream:
-  #     host:
-  #       hostname: basic-auth-svc.default
-  #       port: 8080
+  upstream:
+    service: 
+      name: hello-world-svc
+      namespace: default
+      port: 8080
 paths:
   /hello:
     get:
+      summary: Returns a Hello world to the user
       responses:
         "200":
           description: A simple hello world!
@@ -50,6 +42,7 @@ paths:
     #     request:
     #       enabled: true
     post:
+      summary: Given a name, it returns a greeting
       requestBody:
         description: ""
         required: true
