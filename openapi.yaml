@@ -21,6 +21,21 @@ x-kusk:
       namespace: default
       port: 8080
 paths:
+  /:
+    get:
+      summary: Returns information of the running pod
+      responses:
+        "200":
+          description: Pod details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Hello from Pod pod123
   /hello:
     get:
       summary: Returns a Hello world to the user
