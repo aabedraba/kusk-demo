@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-cert
+  namespace: default
+spec:
+  dnsNames:
+    - dashboard.aabedraba.com
+  secretName: dashboard.aabedraba.com
+  issuerRef:
+    name: letsencrypt-prod
