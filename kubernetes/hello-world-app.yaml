@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: kubeshop/kusk-hello-world:v1.0.0
+        image: kubeshop/kusk-hello-world:v1.1.0
         ports:
         - containerPort: 8080
 ---
