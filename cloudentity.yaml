@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: super-simple
+  description: super simple api
+  version: '0.1.0'
+x-kusk:
+  upstream:
+    service:  
+      name: hello-world-svc
+      namespace: default
+      port: 8080
+  auth:
+    scheme: cloudentity
+    auth-upstream:
+      host:
+        hostname: cloudentity-authorizer-standalone-authorizer.kusk-system
+        port: 9004
+paths:
+  /:
+    get:
+      summary: Returns information of the running pod
+      responses:
+        '200':
+          description: Pod details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Hello from Pod pod123
+  /hello:
+    get:
+      responses:
+        200:
+          description: Return a hello world message
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Mocked Response! 
