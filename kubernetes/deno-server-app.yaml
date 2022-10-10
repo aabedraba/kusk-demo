@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deno-server-example
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: deno-server-example
+  template:
+    metadata:
+      labels:
+        app: deno-server-example
+    spec:
+      containers:
+      - name: deno-server-example
+        image: aabedraba/deno-server-example
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deno-server-example-svc
+  namespace: default
+spec:
+  selector:
+    app: deno-server-example
+  ports:
+  - port: 8080
+    targetPort: 8081
