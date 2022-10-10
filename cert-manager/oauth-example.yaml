@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-    - api.aabedraba.com
-  secretName: api.aabedraba.com
+    - oauth-example.aabedraba.com
+  secretName: oauth-example.aabedraba.com
   issuerRef:
     name: letsencrypt-prod
