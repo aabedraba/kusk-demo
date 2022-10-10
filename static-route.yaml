@@ -1,0 +1,17 @@
+apiVersion: gateway.kusk.io/v1alpha1
+kind: StaticRoute
+metadata:
+  name: sample
+spec:
+  fleet:
+    name: kusk-gateway-envoy-fleet
+    namespace: kusk-system
+  paths:
+    /:
+      get: 
+        route: &root_route
+          upstream:
+            service:
+              name: frontend-app-svc
+              namespace: default
+              port: 3000
